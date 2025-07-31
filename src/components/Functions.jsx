@@ -46,7 +46,7 @@ const PropertyTypeFunction = (val) => {
     ) : (
       <>
         ₹ {priceFormat(pro_amt)}
-        <span className="slash-month"> /month</span>
+        <span className="slash-month d-block"> /month</span>
       </>
     )
   }

@@ -68,8 +68,8 @@ const DashboardHeader = ({ onToggleSidebar }) => {
           />
         </div>
         <div className="ms-2" style={{ lineHeight: 1.2 }}>
-          <div style={{ fontWeight: 600, fontSize: 18, color: '#222', textTransform: 'capitalize' }}>{currentUser?.user.name}</div>
-          <div style={{ fontSize: 14, color: '#888' }}>{currentUser?.user.email}</div>
+          <div style={{ fontWeight: 600, fontSize: 18, color: '#222', textTransform: 'capitalize' }}>{currentUser?.name}</div>
+          <div style={{ fontSize: 14, color: '#888' }}>{currentUser?.email}</div>
         </div>
       </div>
     </div>

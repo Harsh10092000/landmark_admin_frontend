@@ -150,8 +150,8 @@ const Dashboard = () => {
     if (currentUser != null) {
       axios
         .get(
-          import.meta.env.VITE_BACKEND +
-            `/api/listing/getPropertiesByUserId/${currentUser?.user.id}`
+          import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV +
+            `/api/admin/fetchAll`
         )
         .then((res) => {
           if (res.data === "failed") {
@@ -294,6 +294,10 @@ const propertyCounts = useMemo(() => {
       currentSort: sortField === 'listing_id' ? sortDirection : null
     },
     { 
+      value: "User Details",
+      sortable: false
+    },
+    { 
       value: "Property Type", 
       customClass: "mobile-hidden-field",
       sortable: true,
@@ -306,6 +310,13 @@ const propertyCounts = useMemo(() => {
       sortable: true,
       field: 'pro_ad_type',
       currentSort: sortField === 'pro_ad_type' ? sortDirection : null
+    },
+    {
+      value: "Address",
+      customClass: "div-table-cell-pro_ad_type mobile-hidden-field",
+      sortable: true,
+      field: 'pro_street',
+      currentSort: sortField === 'pro_street' ? sortDirection : null
     },
     { 
       value: "Price", 
@@ -340,10 +351,10 @@ const propertyCounts = useMemo(() => {
       customClass: "div-table-cell-action-btn",
       sortable: false
     },
-    { 
-      value: "Remarks",
-      sortable: false
-    },
+    // { 
+    //   value: "Remarks",
+    //   sortable: false
+    // },
   ];
 
   useEffect(() => {
@@ -361,7 +372,7 @@ const propertyCounts = useMemo(() => {
     try {
       setLoader(true);
       const response = await axios.delete(
-        import.meta.env.VITE_BACKEND + `/api/listing/deleteProperty/${delId}`
+        import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV + `/api/listing/deleteProperty/${delId}`
       );
       
       if (response.data.success) {
@@ -386,7 +397,7 @@ const propertyCounts = useMemo(() => {
     console.log("proid 111111 : ", proid, actionProId);
     conflof.log("Ed");
     await axios.put(
-      import.meta.env.VITE_BACKEND + "/api/pro/updateProListingStatus",
+      import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV + "/api/pro/updateProListingStatus",
       proListingStatus
     );
     setChange(change + 1);
@@ -414,7 +425,7 @@ const propertyCounts = useMemo(() => {
     proListingStatus.pro_listed = 0;
     proListingStatus.pro_id = proid;
     await axios.put(
-      import.meta.env.VITE_BACKEND + "/api/pro/updateProListingStatus",
+      import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV + "/api/pro/updateProListingStatus",
       proListingStatus
     );
     setChange(change + 1);
@@ -427,7 +438,7 @@ const propertyCounts = useMemo(() => {
     proSaleStatus.sale_status = val;
     proSaleStatus.pro_id = data.pro_id;
     await axios.put(
-      import.meta.env.VITE_BACKEND + "/api/pro/updateSaleStatus",
+      import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV + "/api/pro/updateSaleStatus",
       proSaleStatus
     );
     setChange(change + 1);
@@ -459,7 +470,7 @@ const propertyCounts = useMemo(() => {
           break;
         case "Mark as Sold":
           await axios.put(
-            `${import.meta.env.VITE_BACKEND}/api/pro/update/${pro_id}`,
+            `${import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV }/api/pro/update/${pro_id}`,
             {
               pro_sold: 1,
             }
@@ -670,13 +681,23 @@ const propertyCounts = useMemo(() => {
           ) : records.length > 0 ? (
             records.map((item) => (
               <div className="div-table-row" key={item.pro_id}>
-                <div className="div-table-cell"><Link className="text-decoration-none" to={`https://landmarkplots.com/${item.pro_url}`}>{item.listing_id}</Link></div>
+               {item.pro_url != null ? <div className="div-table-cell"><Link className="text-decoration-none" to={`https://landmarkplots.com/${item.pro_url}`}>{item.listing_id}</Link></div> : <div className="div-table-cell">{item.listing_id}</div>}
+                <div className="div-table-cell">
+                  {item.name} 
+                  <div><Link className="text-decoration-none" to={`mailto:${item.email}`} target="_blank">{item.email}</Link></div> 
+                  <div><Link className="text-decoration-none" to={`https://api.whatsapp.com/send/?phone=${item.phone}`} target="_blank">{item.phone}</Link></div>
+                </div>
+
+                
                 <div className="div-table-cell mobile-hidden-field">
                   {PropertyTypeFunction(item.pro_type)}
                   <span className="d-block pro-slug-space pl-1" >{PropertyTypeFunction(item.pro_sub_cat.split(",")[0])}</span>
                 </div>
                 <div className="div-table-cell div-table-cell-pro_ad_type mobile-hidden-field">
                   {item.pro_ad_type}
+                </div>
+                <div className="div-table-cell mobile-hidden-field">
+                  {item.pro_street}
                 </div>
                 <div className="div-table-cell mobile-hidden-field">
                   {item.pro_amt ? ShowPrice(item.pro_ad_type, item.pro_amt) : "-"}
@@ -722,10 +743,10 @@ const propertyCounts = useMemo(() => {
                   )}
                 </div>
 
-                <div className="div-table-cell">
+                {/* <div className="div-table-cell">
                   {item.pro_url == null ? "Complete the listing to publish your property." : 
                   "-"}
-                </div>
+                </div> */}
               </div>
             ))
           ) : (

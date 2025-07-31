@@ -311,7 +311,7 @@ const MyProperty = () => {
         if (propertyId != null) {
           axios
             .get(
-              import.meta.env.VITE_BACKEND +
+               import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV +
                 `/api/listing/getPropertyById/${propertyId}`
             )
             .then((res) => {

@@ -15,6 +15,12 @@ import {
 // import Table from './pages/table/Table';
 import Index from './pages/index/Index';
 import LoginRequired from './components/Table/LoginRequired';
+import Login from './pages/login/Login';
+import AllUsers from './pages/allUsers/AllUsers.JSX';
+import ViewyMaps from './pages/CityMaps/ViewMaps';
+import AddMap from './pages/CityMaps/AddMap';
+import EditMap from './pages/CityMaps/EditMap';
+import ChangePassword from './pages/changePassword/ChangePassword';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -27,25 +33,18 @@ const ProtectedRoute = ({ children }) => {
 
   // Show login required if no user
   if (!currentUser) {
-    return (
-      <div style={{
-        boxShadow: "0 2px 10px 0 rgba(0, 0, 0, 0.1)",
-        border: "1px solid #dee2e6",
-        borderRadius: "13px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh"
-      }}>
-        <LoginRequired />
-      </div>
-    );
+    // Redirect to login page if not authenticated
+    return <Navigate to="/login" replace />;
   }
 
   return children ? children : <Outlet />;
 };
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     path: "/",
     element: (
@@ -55,12 +54,28 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "all-users",
+        element: <AllUsers />
+      },
+      {
         path: "dashboard",
         element: <Dashboard />
       },
       {
-        path: "my-property/:propertyId",
-        element: <MyProperty />
+        path: "view-maps",
+        element: <ViewyMaps />
+      },
+      {
+        path: "add-map",
+        element: <AddMap />
+      },
+      {
+        path: "edit-map",
+        element: <EditMap />
+      },
+      {
+        path: "change-password",
+        element: <ChangePassword />
       }
     ]
   }

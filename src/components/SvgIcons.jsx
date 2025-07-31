@@ -103,3 +103,30 @@ export const SearchIcon = () => (
       <svg  xmlns="http://www.w3.org/2000/svg"  width={24}  height={24}  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth={2}  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-square-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M9 12l2 2l4 -4" /></svg>
     )
   }
+
+  export const AllUsersIcon = () => {
+    return (
+      <svg  xmlns="http://www.w3.org/2000/svg"  width={24}  height={24}  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth={2}  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 10a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /><path d="M15 10a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2z" /></svg>
+    )
+  }
+
+  export const LogoutIcon = () => {
+    return (
+      <svg  xmlns="http://www.w3.org/2000/svg"  width={24}  height={24}  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth={2}  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-logout"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M7 12h14l-3 -3m0 6l3 -3" /></svg>
+    )
+  }
+
+  export const MapIcon = () => {
+    return (
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" d="M15.5 4.5l-7 2.1v13.9l7-2.1V4.5zm1 0v13.9l6-1.8V2.7l-6 1.8zm-9 2.1l-6-1.8v13.9l6 1.8V6.6z"/></svg>
+    )
+  }
+
+  export const ChangePasswordIcon = () => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-key"><circle cx="7.5" cy="15.5" r="3.5" /><path d="M21 2l-9.6 9.6" /><path d="M15.5 7.5l3 3" /><path d="M19.5 3.5l-3 3" /></svg>
+    );
+  }
+
+
+

@@ -1,32 +1,20 @@
 import React, { useState, useContext } from "react";
 import "./DashboardSideBar.css";
-import { Link } from "react-router-dom";
-import { AddPropertyIcon, AllProperties, MyProperties } from "../SvgIcons";
+import { Link, useLocation } from "react-router-dom";
+import { AddPropertyIcon, AllProperties, MyProperties, AllUsersIcon, LogoutIcon, MapIcon, ChangePasswordIcon } from "../SvgIcons";
 import { AuthContext } from "../../context2/AuthContext";
+
+
 
 const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
   const { logout } = useContext(AuthContext);
   const [selectedItem, setSelectedItem] = useState("My Properties");
   const [sidebarCollapse, setSidebarCollapse] = useState(false);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const [mapsDropdownOpen, setMapsDropdownOpen] = useState(false);
+  const location = useLocation();
 
-  const LogoutIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={24}
-      height={24}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-      <polyline points="16 17 21 12 16 7" />
-      <line x1="21" y1="12" x2="9" y2="12" />
-    </svg>
-  );
+
 
   const handleLogout = () => {
     setShowLogoutDialog(false);
@@ -35,7 +23,6 @@ const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
 
   const LogoutDialog = ({ open, onClose }) => {
     if (!open) return null;
-
     return (
       <>
         <div className="modal-backdrop">
@@ -141,15 +128,35 @@ const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
       url: "/dashboard",
       icon: <AddPropertyIcon />,
     },
+    // {
+    //   name: "All Properties",
+    //   url: `https://landmarkplots.com/allproperties`,
+    //   icon: <AllProperties />,
+    // },
     {
       name: "All Properties",
-      url: `https://landmarkplots.com/allproperties`,
-      icon: <AllProperties />,
-    },
-    {
-      name: "My Properties",
       url: "/dashboard",
       icon: <MyProperties />,
+    },
+    {
+      name: "All Users",
+      url: "/all-users",
+      icon: <AllUsersIcon />,
+    },
+    // Maps dropdown menu
+    {
+      name: "Maps",
+      isDropdown: true,
+      icon: <MapIcon />,
+      subItems: [
+        { name: "Add Map", url: "/add-map" },
+        { name: "View Maps", url: "/view-maps" },
+      ],
+    },
+    {
+      name: "Change Password",
+      url: "/change-password",
+      icon: <ChangePasswordIcon />,
     },
     {
       name: "Logout",
@@ -189,31 +196,86 @@ const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
             <div className="sidebar-icon mobile-hidden mb-3" onClick={() => setSidebarCollapse(!sidebarCollapse)} style={{ cursor: "pointer", marginLeft: sidebarCollapse ? 0 : 8 }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64"/></svg>
             </div>
-            {menuItems.map((item, index) => (
-              <Link
-                key={item.name}
-                className={`menu-link-modern d-flex align-items-center gap-3 px-3 py-2 rounded-2 fw-semibold ${selectedItem === item.name ? "menu-link-selected-modern" : ""}`}
-                to={item.url}
-                onClick={(e) => {
-                  if (item.onClick) {
-                    item.onClick(e);
-                  } else {
-                    setSelectedItem(item.name);
-                  }
-                }}
-                style={{
-                  background: selectedItem === item.name ? "#e3f0ff" : "transparent",
-                  color: selectedItem === item.name ? "#1976d2" : "#333",
-                  transition: "background 0.2s, color 0.2s",
-                  fontWeight: selectedItem === item.name ? 700 : 500,
-                  boxShadow: selectedItem === item.name ? "0 2px 8px rgba(25, 118, 210, 0.08)" : "none",
-                  cursor: "pointer",
-                }}
-              >
-                <span className="menu-icon" style={{ fontSize: 22 }}>{item.icon}</span>
-                {!sidebarCollapse && <span>{item.name}</span>}
-              </Link>
-            ))}
+            {menuItems.map((item, index) =>
+              !item.isDropdown ? (
+                <Link
+                  key={item.name}
+                  className={`menu-link-modern d-flex align-items-center gap-3 px-3 py-2 rounded-2 fw-semibold ${selectedItem === item.name ? "menu-link-selected-modern" : ""}`}
+                  to={item.url}
+                  onClick={(e) => {
+                    if (item.onClick) {
+                      item.onClick(e);
+                    } else {
+                      setSelectedItem(item.name);
+                    }
+                  }}
+                  style={{
+                    background: selectedItem === item.name ? "#e3f0ff" : "transparent",
+                    color: selectedItem === item.name ? "#1976d2" : "#333",
+                    transition: "background 0.2s, color 0.2s",
+                    fontWeight: selectedItem === item.name ? 700 : 500,
+                    boxShadow: selectedItem === item.name ? "0 2px 8px rgba(25, 118, 210, 0.08)" : "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  <span className="menu-icon" style={{ fontSize: 22 }}>{item.icon}</span>
+                  {!sidebarCollapse && <span>{item.name}</span>}
+                </Link>
+              ) : (
+                <div key={item.name} style={{ position: "relative" }}>
+                  <div
+                    className={`menu-link-modern d-flex align-items-center gap-3 px-3 py-2 rounded-2 fw-semibold ${item.subItems.some(sub => location.pathname === sub.url) ? "menu-link-selected-modern" : ""}`}
+                    style={{
+                      background: item.subItems.some(sub => location.pathname === sub.url) ? "#e3f0ff" : "transparent",
+                      color: item.subItems.some(sub => location.pathname === sub.url) ? "#1976d2" : "#333",
+                      fontWeight: item.subItems.some(sub => location.pathname === sub.url) ? 700 : 500,
+                      boxShadow: item.subItems.some(sub => location.pathname === sub.url) ? "0 2px 8px rgba(25, 118, 210, 0.08)" : "none",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setMapsDropdownOpen(!mapsDropdownOpen)}
+                  >
+                    <span className="menu-icon" style={{ fontSize: 22 }}>{item.icon}</span>
+                    {!sidebarCollapse && <span>{item.name}</span>}
+                    {!sidebarCollapse && (
+                      <svg style={{ marginLeft: "auto", transition: "transform 0.2s", transform: mapsDropdownOpen ? "rotate(90deg)" : "rotate(0deg)" }} width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M9 6l6 6-6 6" /></svg>
+                    )}
+                  </div>
+                  {mapsDropdownOpen && !sidebarCollapse && (
+                    <div style={{
+                      position: "absolute",
+                      left: 0,
+                      top: "100%",
+                      background: "#fff",
+                      borderRadius: 8,
+                      boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+                      minWidth: 180,
+                      zIndex: 10,
+                    }}>
+                      {item.subItems.map(sub => (
+                        <Link
+                          key={sub.name}
+                          to={sub.url}
+                          className="menu-link-modern d-flex align-items-center gap-2 px-3 py-2"
+                          style={{
+                            color: location.pathname === sub.url ? "#1976d2" : "#333",
+                            fontWeight: location.pathname === sub.url ? 700 : 500,
+                            background: location.pathname === sub.url ? "#e3f0ff" : "transparent",
+                            borderRadius: 6,
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            setSelectedItem(item.name);
+                            setMapsDropdownOpen(false);
+                          }}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>

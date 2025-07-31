@@ -111,6 +111,10 @@
     opacity: 1 !important;
   }
 
+  .div-table-cell-flex-0-3 {
+    flex: 0.3 !important;
+  }
+
   .div-table-cell:first-child {
     flex: 0.9;
   }
@@ -130,6 +134,7 @@
   .div-table-cell-action-btn {
     flex: 0.8;
   }
+
   
   /* Hover effect */
   .div-table-row:hover {

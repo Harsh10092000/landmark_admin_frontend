@@ -40,7 +40,9 @@ const Index = memo(() => {
 
   const toggleSidebar = () => {
     console.log("triggered")
+    console.log("isSidebarOpen : " , isSidebarOpen)
     setIsSidebarOpen(!isSidebarOpen);
+    console.log("isSidebarOpen2 : " , isSidebarOpen)
   };
 
   useEffect(() => {
