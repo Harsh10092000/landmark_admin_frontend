@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   preview: {
-    allowedHosts: ['user.landmarkplots.com'],
+    allowedHosts: ['admin.landmarkplots.com'],
   },
 })
