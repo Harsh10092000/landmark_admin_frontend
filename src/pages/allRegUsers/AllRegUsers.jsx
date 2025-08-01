@@ -57,7 +57,7 @@ import {
     );
   };
   
-  const AllUsers = () => {
+  const AllRegUsers = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const { currentUser } = useContext(AuthContext);
     const [currentPage, setCurrentPage] = useState(1);
@@ -487,5 +487,5 @@ import {
     );
   };
   
-  export default AllUsers;
+  export default AllRegUsers;
   

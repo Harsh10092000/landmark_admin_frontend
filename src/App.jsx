@@ -16,11 +16,11 @@ import {
 import Index from './pages/index/Index';
 import LoginRequired from './components/Table/LoginRequired';
 import Login from './pages/login/Login';
-import AllUsers from './pages/allUsers/AllUsers.JSX';
 import ViewyMaps from './pages/CityMaps/ViewMaps';
 import AddMap from './pages/CityMaps/AddMap';
 import EditMap from './pages/CityMaps/EditMap';
 import ChangePassword from './pages/changePassword/ChangePassword';
+import AllRegUsers from './pages/allRegUsers/AllRegUsers';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "all-users",
-        element: <AllUsers />
+        element: <AllRegUsers />
       },
       {
         path: "dashboard",
