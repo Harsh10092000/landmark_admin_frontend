@@ -471,22 +471,42 @@ const EditMap = () => {
                         )}
                     </div>
                 </div>
-            </div>
-            
-            <div style={{ marginTop: '20px', textAlign: 'right' }}>
-                <button
-                    onClick={handleSubmit}
-                    style={{
-                        background: '#1a73e8',
-                        color: 'white',
-                        border: 'none',
-                        padding: '10px 20px',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    Update Map
-                </button>
+                
+                <div style={{ marginTop: '20px', textAlign: 'right' }}>
+                    <button
+                        onClick={handleSubmit}
+                        disabled={formSubmit}
+                        style={{
+                            background: '#1a73e8',
+                            color: 'white',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '6px',
+                            cursor: formSubmit ? 'not-allowed' : 'pointer',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            transition: 'all 0.2s ease',
+                            boxShadow: '0 2px 4px rgba(26, 115, 232, 0.2)',
+                            opacity: formSubmit ? 0.7 : 1
+                        }}
+                        onMouseOver={(e) => {
+                            if (!formSubmit) {
+                                e.target.style.background = '#1557b0';
+                                e.target.style.transform = 'translateY(-1px)';
+                                e.target.style.boxShadow = '0 4px 8px rgba(26, 115, 232, 0.3)';
+                            }
+                        }}
+                        onMouseOut={(e) => {
+                            if (!formSubmit) {
+                                e.target.style.background = '#1a73e8';
+                                e.target.style.transform = 'translateY(0)';
+                                e.target.style.boxShadow = '0 2px 4px rgba(26, 115, 232, 0.2)';
+                            }
+                        }}
+                    >
+                        {formSubmit ? "Updating..." : "Update Map"}
+                    </button>
+                </div>
             </div>
             
             <SuccessModal 
