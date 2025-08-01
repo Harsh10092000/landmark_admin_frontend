@@ -659,7 +659,7 @@ const MyProperty = () => {
             // Submit the form
             
             const response = await axios.put(
-                import.meta.env.VITE_BACKEND + `/api/listing/updateProperty/${propertyId}`,
+               import.meta.env.NODE_ENV === 'development' ? import.meta.env.VITE_BACKEND_DEV + `/api/listing/updateProperty/${propertyId}` : import.meta.env.VITE_BACKEND_PROD + `/api/listing/updateProperty/${propertyId}`,
                 finalData
             );
 
