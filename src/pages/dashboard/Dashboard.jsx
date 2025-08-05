@@ -642,7 +642,7 @@ const propertyCounts = useMemo(() => {
           const filterMap = {
             "All Properties": "All",
             "Listed Properties": "Listed Properties",
-            "Delisted/Expired": "Delisted Properties",
+            "Delisted/Pending": "Delisted Properties",
             "Sold Out Properties": "Sold Out Properties"
           };
           setFilter(filterMap[tabLabel] || "All");

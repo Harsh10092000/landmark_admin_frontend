@@ -15,8 +15,8 @@ const TabSection = ({ allPropertiesLength, listedCount, delistedCount, soldCount
       length: listedCount,
     },
     {
-      label: 'Delisted/Expired',
-      isSelected: activeTab === 'Delisted/Expired',
+      label: 'Delisted/Pending',
+      isSelected: activeTab === 'Delisted/Pending',
       length: delistedCount,
     },
     {
