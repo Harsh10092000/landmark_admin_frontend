@@ -20,6 +20,7 @@ import ViewyMaps from './pages/CityMaps/ViewMaps';
 import AddMap from './pages/CityMaps/AddMap';
 import EditMap from './pages/CityMaps/EditMap';
 import ChangePassword from './pages/changePassword/ChangePassword';
+import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import AllRegUsers from './pages/allRegUsers/AllRegUsers';
 
 // Protected Route Component
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
   },
   {
     path: "/",

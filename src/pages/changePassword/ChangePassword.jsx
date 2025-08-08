@@ -34,7 +34,19 @@ const ChangePassword = () => {
   };
 
   const handleUpdatePassword = async () => {
-    if (newPassword !== confirmPassword) {
+    const trimmedOtp = otp.trim();
+    const trimmedNewPwd = newPassword.trim();
+    const trimmedConfirmPwd = confirmPassword.trim();
+
+    if (!trimmedOtp) {
+      setError("OTP is required.");
+      return;
+    }
+    if (trimmedNewPwd.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
+    if (trimmedNewPwd !== trimmedConfirmPwd) {
       setError("Passwords do not match.");
       return;
     }
@@ -47,8 +59,8 @@ const ChangePassword = () => {
         import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV + "/api/admin/update-password",
         { 
           email: currentUser?.email || currentUser?.username,
-          otp, 
-          newPassword 
+          otp: trimmedOtp, 
+          newPassword: trimmedNewPwd 
         }
       );
       if (res.data.success) {

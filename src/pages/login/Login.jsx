@@ -3,6 +3,7 @@ import { AuthContext } from "../../context2/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../index.css";
+import { Link } from "react-router-dom";
 
 const ACCENT = "#2563eb";
 const CARD_BG = "#fff";
@@ -158,9 +159,9 @@ const Login = () => {
           )}
         </form>
         <div style={{ width: "100%", textAlign: "center", marginTop: 8 }}>
-          <a href="#" style={{ color: ACCENT, textDecoration: "none", fontWeight: 500, fontSize: 15 }}>
+          <Link to="/forgot-password" style={{ color: ACCENT, textDecoration: "none", fontWeight: 500, fontSize: 15 }}>
             Forgot My Password
-          </a>
+          </Link>
         </div>
         <div style={{ width: "100%", textAlign: "center", marginTop: 28, fontSize: 14, color: "#888" }}>
           <a

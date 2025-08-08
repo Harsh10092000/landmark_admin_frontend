@@ -25,7 +25,7 @@ import {
   } from "../../components/SvgIcons";
   import DeleteDialog from "../../components/dialogComp/DeleteDialog";
   import Loader from "../../components/loader/Loader";
-  
+
   
   const ActionDropdownMenu = [
     { title: "Edit", icon: <EditIcon /> },
@@ -198,15 +198,16 @@ import {
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
   
-    // Update the deleteUser function
-    const deleteUser = async () => {
+    // Update the delete function for deleting maps
+    const deleteMap = async () => {
       try {
         setLoader(true);
         const response = await axios.delete(
-          import.meta.env.NODE_ENV==='production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV + `/api/admin/deleteUser/${delId}`
+          (import.meta.env.NODE_ENV === 'production'
+            ? import.meta.env.VITE_BACKEND_PROD
+            : import.meta.env.VITE_BACKEND_DEV) + `/api/cityMap/deleteMap/${delId}`
         );
-        
-        if (response.data.success) {
+        if (response.data === "DELETED") {
           setChange(change + 1);
           setSnackDel(true);
           setOpenDel(false);
@@ -214,7 +215,7 @@ import {
           setSnackQ(true);
         }
       } catch (err) {
-        console.error("Error deleting user:", err);
+        console.error("Error deleting map:", err);
         setSnackQ(true);
       } finally {
         setLoader(false);
@@ -244,7 +245,7 @@ import {
   
     return (
       <div className="dashboard-main-wrapper">
-        <DeleteDialog open={openDel} handleClose={handleCloseDel} deleteProperty={deleteUser} deleteHeading={"Delete this User?"} deleteContent={"Are you sure want to delete this user? You will not be able to recover it."} />
+        <DeleteDialog open={openDel} handleClose={handleCloseDel} deleteProperty={deleteMap} deleteHeading={"Delete this Map?"} deleteContent={"Are you sure you want to delete this map? You will not be able to recover it."} />
         
         <Snackbar
           ContentProps={{
@@ -331,7 +332,9 @@ import {
                   <div className="div-table-cell">{item.map_category}</div>
                   <div className="div-table-cell">{item.map_sub_category}</div>
                   <div className="div-table-cell">
-                    <img src={item.map_image} alt="" style={{ width: 80, borderRadius: 4 }} />
+                    <Link target="_blank" to={`${import.meta.env.NODE_ENV === 'production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV}/mapImages/${item.map_image}`}>
+                      <img src={`${import.meta.env.NODE_ENV === 'production' ? import.meta.env.VITE_BACKEND_PROD : import.meta.env.VITE_BACKEND_DEV}/mapImages/${item.map_image}`} alt="" style={{ width: 80, borderRadius: 4 }} />
+                    </Link>
                   </div>
                   <div className="div-table-cell div-table-cell-action-btn action-btn-wrapper">
                     <span
