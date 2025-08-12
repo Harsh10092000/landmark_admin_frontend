@@ -58,6 +58,7 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
+      { index: true, element: <Navigate to="dashboard" replace /> },
       {
         path: "all-users",
         element: <AllRegUsers />

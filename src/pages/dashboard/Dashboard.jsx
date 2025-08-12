@@ -44,14 +44,14 @@ import Loader from "../../components/loader/Loader";
 
 const ActionDropdownMenu1 = [
   { to: "/viewProperty", title: "View property", icon: <ViewIcon /> },
-  { to: "/my-property", title: "Edit property", icon: <EditIcon /> },
+  // { to: "/my-property", title: "Edit property", icon: <EditIcon /> },
   // { to: "/editProperty", title: "Active", icon: <ListAgainIcon /> },
   // { to: "/editProperty", title: "Mark as Sold", icon: <MarkIcon /> },
   { to: "/editProperty", title: "Delete", icon: <DeleteIcon /> },
 ];
 
 const ActionDropdownMenu2 = [
-  { to: "/my-property", title: "Edit property", icon: <EditIcon /> },
+  // { to: "/my-property", title: "Edit property", icon: <EditIcon /> },
   { to: "/editProperty", title: "Delete", icon: <DeleteIcon /> },
 ];
 

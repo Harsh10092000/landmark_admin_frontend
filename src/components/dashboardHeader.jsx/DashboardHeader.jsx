@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../context2/AuthContext';
 const DashboardHeader = ({ onToggleSidebar }) => {
-  const [pageName, setPageName] = useState('');
+  //const [pageName, setPageName] = useState('');
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {
-    const pathname = window.location.pathname;
-    const segments = pathname.split('/').filter(segment => segment);
-    const lastSegment = segments[segments.length - 1] || 'Unknown';
-    setPageName(lastSegment);
+    //const pathname = window.location.pathname;
+    //const segments = pathname.split('/').filter(segment => segment);
+    //const lastSegment = segments[segments.length - 1] || 'Unknown';
+    //setPageName(lastSegment);
   }, []);
   return (
     <div
@@ -44,8 +44,9 @@ const DashboardHeader = ({ onToggleSidebar }) => {
             <path fill="currentColor" d="M15.7798 17H5.2202C4.27169 17 3.5 17.5606 3.5 18.2504C3.5 18.9394 4.27169 19.5 5.2202 19.5H15.7798C16.7283 19.5 17.5 18.9394 17.5 18.2504C17.5 17.5606 16.7283 17 15.7798 17Z"></path>
           </svg>
         </div>
-        <div className="dashboard-heading text-capitalize" style={{ fontWeight: 700, fontSize: 28, color: '#222' }}>
-          {pageName}
+        <div className="dashboard-heading text-capitalize" style={{ fontWeight: 700, fontSize: 26, color: '#222' }}>
+          {/* {pageName} */}
+          Landmark Admin Dashboard
         </div>
       </div>
       <div className="d-flex align-items-center dashboard-header-inside-right gap-3">

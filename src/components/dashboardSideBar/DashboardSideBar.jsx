@@ -123,11 +123,11 @@ const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
   };
 
   const menuItems = [
-    {
-      name: "List Property",
-      url: "/dashboard",
-      icon: <AddPropertyIcon />,
-    },
+    // {
+    //   name: "List Property",
+    //   url: "/dashboard",
+    //   icon: <AddPropertyIcon />,
+    // },
     // {
     //   name: "All Properties",
     //   url: `https://landmarkplots.com/allproperties`,
