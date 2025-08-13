@@ -120,8 +120,8 @@
 
 
 .dashboard-right-main {
-    margin: 0 15px;
-    padding: 0 20px;
+    margin: 0 10px;
+    padding: 0 15px;
 }
 
 .sidebar-icon .css-mihbd4 {
@@ -138,7 +138,7 @@
 }
 
 .dashboardSideBar {
-    width: 230px;  
+    width: 225px;  
     overflow-y: auto;
     height: calc(100vh - 68px) ;
     position: sticky;
@@ -275,7 +275,7 @@ padding-left: 10px;
     width: 140px;
 }
 .sidebar-open.dashboard-sideBar-wrapper, .sidebar-open .dashboardSideBar {
-    width: 230px ;
+    width: 225px ;
 }
 
 .dashboard-header-inside-right img {

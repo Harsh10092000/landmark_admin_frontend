@@ -135,6 +135,10 @@
     flex: 0.8;
   }
 
+
+  .div-table-cell-2-5 {
+    flex: 2;
+  }
   
   /* Hover effect */
   .div-table-row:hover {
@@ -457,6 +461,18 @@ color: #919EAB;
   }
   .filter-dropdown .css-sc8y68-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
     margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .laptop-hidden-field { 
+    display: none;
+  }
+  .div-table-body .div-table-cell {
+    font-size: 13px;
+  }
+  .div-table-cell-2-5 {
+    flex: 2.5;
   }
 }
 

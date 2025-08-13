@@ -295,6 +295,7 @@ const propertyCounts = useMemo(() => {
     },
     { 
       value: "User Details",
+      customClass: "div-table-cell-2-5",
       sortable: false
     },
     { 
@@ -311,16 +312,16 @@ const propertyCounts = useMemo(() => {
       field: 'pro_ad_type',
       currentSort: sortField === 'pro_ad_type' ? sortDirection : null
     },
-    {
-      value: "Address",
-      customClass: "div-table-cell-pro_ad_type mobile-hidden-field",
-      sortable: true,
-      field: 'pro_street',
-      currentSort: sortField === 'pro_street' ? sortDirection : null
-    },
+    // {
+    //   value: "Address",
+    //   customClass: "div-table-cell-pro_ad_type mobile-hidden-field",
+    //   sortable: true,
+    //   field: 'pro_street',
+    //   currentSort: sortField === 'pro_street' ? sortDirection : null
+    // },
     { 
       value: "Price", 
-      customClass: "mobile-hidden-field",
+      customClass: "mobile-hidden-field laptop-hidden-field",
       sortable: true,
       field: 'pro_amt',
       currentSort: sortField === 'pro_amt' ? sortDirection : null
@@ -681,8 +682,8 @@ const propertyCounts = useMemo(() => {
           ) : records.length > 0 ? (
             records.map((item) => (
               <div className="div-table-row" key={item.pro_id}>
-               {item.pro_url != null ? <div className="div-table-cell"><Link className="text-decoration-none" to={`https://landmarkplots.com/${item.pro_url}`}>{item.listing_id}</Link></div> : <div className="div-table-cell">{item.listing_id}</div>}
-                <div className="div-table-cell">
+               {item.pro_url != null ? <div className="div-table-cell"><Link target="_blank" className="text-decoration-none" to={`https://landmarkplots.com/${item.pro_url}`}>{item.listing_id}</Link></div> : <div className="div-table-cell">{item.listing_id}</div>}
+                <div className="div-table-cell div-table-cell-2-5">
                   {item.name} 
                   <div><Link className="text-decoration-none" to={`mailto:${item.email}`} target="_blank">{item.email}</Link></div> 
                   <div><Link className="text-decoration-none" to={`https://api.whatsapp.com/send/?phone=${item.phone}`} target="_blank">{item.phone}</Link></div>
@@ -696,10 +697,10 @@ const propertyCounts = useMemo(() => {
                 <div className="div-table-cell div-table-cell-pro_ad_type mobile-hidden-field">
                   {item.pro_ad_type}
                 </div>
-                <div className="div-table-cell mobile-hidden-field">
+                {/* <div className="div-table-cell mobile-hidden-field">
                   {item.pro_street}
-                </div>
-                <div className="div-table-cell mobile-hidden-field">
+                </div> */}
+                <div className="div-table-cell mobile-hidden-field laptop-hidden-field">
                   {item.pro_amt ? ShowPrice(item.pro_ad_type, item.pro_amt) : "-"}
                 </div>
                 <div className="div-table-cell div-table-cell-date">
