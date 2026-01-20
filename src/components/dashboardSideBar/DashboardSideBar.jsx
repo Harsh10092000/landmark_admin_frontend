@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "./DashboardSideBar.css";
 import { Link, useLocation } from "react-router-dom";
 import { AddPropertyIcon, AllProperties, MyProperties, AllUsersIcon, LogoutIcon, MapIcon, ChangePasswordIcon } from "../SvgIcons";
+import { IconQrcode } from "@tabler/icons-react";
 import { AuthContext } from "../../context2/AuthContext";
 
 
@@ -159,6 +160,11 @@ const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
       icon: <ChangePasswordIcon />,
     },
     {
+      name: "Review QR Code Generator",
+      url: "/qr-generator",
+      icon: <IconQrcode size={22} />,
+    },
+    {
       name: "Logout",
       url: "#",
       icon: <LogoutIcon />,
@@ -194,7 +200,7 @@ const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
         <div className="dashboardSideBar py-4">
           <div className="dashboardSidebar-inside d-inline-flex flex-column gap-2">
             <div className="sidebar-icon mobile-hidden mb-3" onClick={() => setSidebarCollapse(!sidebarCollapse)} style={{ cursor: "pointer", marginLeft: sidebarCollapse ? 0 : 8 }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64" /></svg>
             </div>
             {menuItems.map((item, index) =>
               !item.isDropdown ? (
@@ -279,9 +285,9 @@ const DashboardSideBar = ({ isSidebarOpen, toggleSidebar }) => {
           </div>
         </div>
       </div>
-      <LogoutDialog 
-        open={showLogoutDialog} 
-        onClose={() => setShowLogoutDialog(false)} 
+      <LogoutDialog
+        open={showLogoutDialog}
+        onClose={() => setShowLogoutDialog(false)}
       />
     </>
   );

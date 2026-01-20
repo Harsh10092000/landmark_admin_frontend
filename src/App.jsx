@@ -22,6 +22,7 @@ import EditMap from './pages/CityMaps/EditMap';
 import ChangePassword from './pages/changePassword/ChangePassword';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import AllRegUsers from './pages/allRegUsers/AllRegUsers';
+import QRCodeGenerator from './pages/tools/QRCodeGenerator';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "change-password",
         element: <ChangePassword />
+      },
+      {
+        path: "qr-generator",
+        element: <QRCodeGenerator />
       }
     ]
   }
